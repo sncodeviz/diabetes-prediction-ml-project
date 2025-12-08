@@ -1,66 +1,93 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import joblib
 
-# Load the trained model
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import StandardScaler
+from imblearn.over_sampling import SMOTE
+from imblearn.pipeline import Pipeline  # this is from imblearn, not sklearn
+
+
+# ---------- 1. Load data + train model (cached) ----------
 @st.cache_resource
-def load_model():
-    model = joblib.load("diabetes_model.pkl")
-    return model
+def train_model():
+    # TODO: change this to your actual CSV name in the repo
+    data = pd.read_csv("diabetes_prediction_dataset.csv")
 
-model = load_model()
+    # TODO: change "TARGET_COLUMN" to your actual target column, e.g. "diabetes_binary" or "Diabetic"
+    target_col = "diabetes"
 
-# Try to get feature names from the model (works if trained on a DataFrame)
-if hasattr(model, "feature_names_in_"):
-    FEATURE_NAMES = list(model.feature_names_in_)
-else:
-    # Fallback if feature names are not stored
-    # You can replace this with your actual column names later
-    FEATURE_NAMES = [f"feature_{i}" for i in range(getattr(model, "n_features_in_", 10))]
+    X = data.drop(columns=[target_col])
+    y = data[target_col]
 
+    # Split (optional, but matches your project structure)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    # TODO: adjust this pipeline to match what you used in your final Decision Tree model
+    dt_pipeline = Pipeline(
+        steps=[
+            ("smote", SMOTE(random_state=42)),
+            ("scaler", StandardScaler()),
+            ("clf", DecisionTreeClassifier(
+                random_state=42,
+                # max_depth=..., criterion=..., etc if you used them
+            )),
+        ]
+    )
+
+    dt_pipeline.fit(X_train, y_train)
+
+    feature_names = list(X.columns)
+
+    return dt_pipeline, feature_names
+
+
+model, FEATURE_NAMES = train_model()
+
+
+# ---------- 2. Streamlit UI ----------
 st.title("🩺 Diabetes Risk Prediction Demo")
 st.write("""
-This interactive demo uses a machine learning model trained on health data to predict the **likelihood of diabetes**.
+This interactive app uses a machine learning model trained on health data to predict the **likelihood of diabetes**.
 
-> **Disclaimer:** This app is for educational and demonstration purposes only and is **not** a medical diagnostic tool.
+> ⚠️ **Disclaimer:** This tool is for educational/demo purposes only and is **not** a medical diagnostic device.
 """)
 
 st.sidebar.header("Input Features")
 
-#Build user input section
 user_input = {}
 
-st.sidebar.write("Please fill in the values for each feature below:")
+st.sidebar.write("Fill in the values for each feature below:")
 
 for name in FEATURE_NAMES:
-    # Basic numeric input for each feature.
-    # You can customize labels, ranges, and defaults later.
+    # Here we treat everything as numeric. This works well if your dataset is coded as numbers (0/1, etc.)
     user_input[name] = st.sidebar.number_input(
         label=name,
         value=0.0,
         step=0.1,
-        format="%.2f"
+        format="%.2f",
     )
 
-# Convert to DataFrame for the model (matches what it saw during training)
 input_df = pd.DataFrame([user_input])
 
 st.subheader("Your Input")
 st.dataframe(input_df)
 
-# ---------- Prediction ----------
+
+# ---------- 3. Prediction ----------
 if st.button("Predict Diabetes Risk"):
     try:
-        prediction = model.predict(input_df)[0]
+        pred = model.predict(input_df)[0]
 
-        # If model supports predict_proba (for probability)
         if hasattr(model, "predict_proba"):
-            proba = model.predict_proba(input_df)[0][1]  # probability of class 1
+            proba = model.predict_proba(input_df)[0][1]
         else:
             proba = None
 
-        if prediction == 1:
+        if int(pred) == 1:
             st.error("⚠️ The model predicts: **Diabetic (Higher Risk)**")
         else:
             st.success("✅ The model predicts: **Non-Diabetic (Lower Risk)**")
