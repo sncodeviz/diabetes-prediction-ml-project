@@ -39,6 +39,10 @@ Based on these findings, healthcare providers could use a model like this as a s
 
 However, most importantly, the model should not be used as a standalone diagnostic system replacing medically trained professionals. Instead, it should support medical decision-making while ensuring that patient privacy, fairness, and ethical guidelines are maintained.
 
+## Live Interactive Demo
+You can try the diabetes prediction model in your browser here:
+[Open the Diabetes Prediction App](https://diabetes-prediction-ml-project-kmjappksujjhacqjlnan8v7.streamlit.app/)
+
 ## **Full Report Link on [Github](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/Project%20Report.pdf).**
 
 
