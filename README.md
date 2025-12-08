@@ -46,7 +46,7 @@ However, most importantly, the model should not be used as a standalone diagnost
 You can try the diabetes prediction model in your browser here:
 [Open the Diabetes Prediction App](https://diabetes-prediction-ml-project-kmjappksujjhacqjlnan8v7.streamlit.app/)
 
-## **Full Report Link on [Github](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/Project%20Report.pdf).**
+## **Full Report on [Github](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/Project%20Report.pdf).**
 
 
 
