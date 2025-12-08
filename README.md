@@ -16,6 +16,9 @@ Diabetes Prediction Dataset on [Kaggle](https://www.kaggle.com/datasets/iammusta
 ## Code Notebook
 Project Code Notebook detailing Phases 1-6 from Google Collab on [GitHub](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/Project_Google_Collab_Notebook.ipynb).
 
+## Streamlit App
+This project includes an interactive Streamlit app for real-time diabetes risk prediction. [Try it here](https://diabetes-prediction-ml-project-kmjappksujjhacqjlnan8v7.streamlit.app/)
+
 ## Executive Summary
 Diabetes is a growing and important public health concern not only in the United States of America but also worldwide. In healthcare analytics, early detection of diabetes is an effective way to reduce long-term health complications and healthcare costs, especially with Americans already struggling with their daily costs and high health insurance premiums. 
 
