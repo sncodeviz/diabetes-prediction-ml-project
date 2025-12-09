@@ -20,7 +20,7 @@ Project Code Notebook detailing Phases 1-6 from Google Collab on [GitHub](https:
 This project includes an interactive Streamlit app for real-time diabetes risk prediction. [Try it here](https://diabetes-prediction-ml-project-kmjappksujjhacqjlnan8v7.streamlit.app/)
 
 ## Data Flow Diagram
-This diagram represents the end-to-end workflow of the diabetes prediction project, including data cleaning, exploratory analysis, preprocessing, model training, evaluation, and deployment. [View the full diagram on GitHub](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/assets/diagrams/End-to-End%20ML%20Pipeline%20(Data%20Flow%20Diagram).png)
+This diagram represents the end-to-end workflow of the diabetes prediction project, including data cleaning, exploratory analysis, preprocessing, model training, evaluation, and deployment. [View the diagram on GitHub](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/assets/diagrams/End-to-End%20ML%20Pipeline%20(Data%20Flow%20Diagram).png)
 
 ## Executive Summary
 Diabetes is a growing and important public health concern not only in the United States of America but also worldwide. In healthcare analytics, early detection of diabetes is an effective way to reduce long-term health complications and healthcare costs, especially with Americans already struggling with their daily costs and high health insurance premiums. 
@@ -44,10 +44,6 @@ Feature importance analysis of the Decision Tree Model confirmed that blood gluc
 Based on these findings, healthcare providers could use a model like this as a supportive risk assessment tool. It can help flag patients who may require additional screening, support early intervention efforts, and allocate clinical resources more efficiently. 
 
 However, most importantly, the model should not be used as a standalone diagnostic system replacing medically trained professionals. Instead, it should support medical decision-making while ensuring that patient privacy, fairness, and ethical guidelines are maintained.
-
-## Live Interactive Demo
-You can try the diabetes prediction model in your browser here:
-[Open the Diabetes Prediction App](https://diabetes-prediction-ml-project-kmjappksujjhacqjlnan8v7.streamlit.app/)
 
 ## **Full Report on [Github](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/Project%20Report.pdf).**
 
