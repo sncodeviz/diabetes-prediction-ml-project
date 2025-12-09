@@ -19,6 +19,10 @@ Project Code Notebook detailing Phases 1-6 from Google Collab on [GitHub](https:
 ## Streamlit App
 This project includes an interactive Streamlit app for real-time diabetes risk prediction. [Try it here](https://diabetes-prediction-ml-project-kmjappksujjhacqjlnan8v7.streamlit.app/)
 
+## Data Flow Diagram
+
+This diagram represents the end-to-end workflow of the diabetes prediction project, including data cleaning, exploratory analysis, preprocessing, model training, evaluation, and deployment. [Check it here]([assets/diagrams/data_flow_diagram.png](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/assets/diagrams/End-to-End%20ML%20Pipeline%20(Data%20Flow%20Diagram).png))
+
 ## Executive Summary
 Diabetes is a growing and important public health concern not only in the United States of America but also worldwide. In healthcare analytics, early detection of diabetes is an effective way to reduce long-term health complications and healthcare costs, especially with Americans already struggling with their daily costs and high health insurance premiums. 
 
