@@ -4,4 +4,3 @@ matplotlib
 seaborn
 scikit-learn==1.4.2
 streamlit
-joblib
