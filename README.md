@@ -17,7 +17,9 @@ Diabetes Prediction Dataset on [Kaggle](https://www.kaggle.com/datasets/iammusta
 Project Code Notebook detailing Phases 1-6 from Google Collab on [GitHub](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/Project_Google_Collab_Notebook.ipynb).
 
 ## Streamlit App
-This project includes an interactive Streamlit app for real-time diabetes risk prediction. [Try it here](https://diabetes-prediction-ml-project-kmjappksujjhacqjlnan8v7.streamlit.app/)
+This project includes an interactive Streamlit app for real-time diabetes risk prediction. [Try it here](https://diabetes-prediction-ml-project-jpaj2crdcspxpc2tvbvcwu.streamlit.app/)
+
+_**Note**: Due to version and library limitations on Streamlit Cloud (Python 3.13), the deployed app uses a custom SMOTE-like oversampling method instead of the original imbalanced-learn implementation used during offline model development in Colab._
 
 ## Data Flow Diagram
 This diagram represents the end-to-end workflow of the diabetes prediction project, including data cleaning, exploratory analysis, preprocessing, model training, evaluation, and deployment. [View the diagram on GitHub](https://github.com/sncodeviz/diabetes-prediction-ml-project/blob/main/assets/diagrams/End-to-End%20ML%20Pipeline%20(Data%20Flow%20Diagram).png)
