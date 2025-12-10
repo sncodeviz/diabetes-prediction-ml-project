@@ -9,13 +9,11 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
 
-from imblearn.over_sampling import SMOTE
-from imblearn.pipeline import Pipeline as ImbPipeline
-
 
 # ---------- 1. Load data ----------
 @st.cache_resource
 def load_data():
+    # Make sure this CSV is in the same folder as app.py
     data = pd.read_csv("diabetes_prediction_dataset.csv")
     return data
 
@@ -23,7 +21,7 @@ def load_data():
 # ---------- 2. Train model (cached) ----------
 @st.cache_resource
 def train_model(data: pd.DataFrame):
-    # Match your notebook
+    # Feature setup
     numeric_features = ['age', 'bmi', 'HbA1c_level', 'blood_glucose_level']
     categorical_features = ['gender', 'smoking_history', 'hypertension', 'heart_disease']
     target = 'diabetes'
@@ -58,12 +56,9 @@ def train_model(data: pd.DataFrame):
         ]
     )
 
-    # SMOTE + Decision Tree (your final model)
-    smote = SMOTE(random_state=42)
-
-    dt_pipeline = ImbPipeline(steps=[
+    # Decision Tree model (no SMOTE in deployed app)
+    dt_pipeline = Pipeline(steps=[
         ('preprocessor', preprocessor),
-        ('smote', smote),
         ('classifier', DecisionTreeClassifier(
             max_depth=6,
             min_samples_split=4,
@@ -72,20 +67,24 @@ def train_model(data: pd.DataFrame):
         ))
     ])
 
+    # Train the pipeline
     dt_pipeline.fit(X_train, y_train)
 
-    gender_options = sorted(data['gender'].unique())
-    smoking_options = sorted(data['smoking_history'].unique())
+    # For UI dropdowns
+    gender_options = sorted(data['gender'].dropna().unique())
+    smoking_options = sorted(data['smoking_history'].dropna().unique())
 
     return dt_pipeline, numeric_features, categorical_features, gender_options, smoking_options
 
 
+# Load data + train model
 data = load_data()
 model, numeric_features, categorical_features, gender_options, smoking_options = train_model(data)
 
 
 # ---------- 3. Streamlit UI ----------
 st.title("🩺 Diabetes Risk Prediction Demo")
+
 st.write("""
 This interactive app uses a machine learning model trained on health data to predict the **likelihood of diabetes**.
 
