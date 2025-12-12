@@ -110,12 +110,10 @@ print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred_dt))
 
 # Fitted preprocessor + classifier into a sklearn Pipeline
-from sklearn.pipeline import Pipeline
 
 dt_pipeline_final = Pipeline(steps=[
     ('preprocessor', preprocessor),
     ('classifier', clf)
 ])
 
-import joblib
 joblib.dump(dt_pipeline_final, "diabetes_dt_smote_final.pkl")
